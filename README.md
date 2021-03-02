@@ -1,1 +1,1 @@
-This is my new write-up blog using Pico CMS=
+This is my new write-up blog using Pico CMS
