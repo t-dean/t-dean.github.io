@@ -1,26 +1,121 @@
 <head>
-<title>Txqi blog</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../styles.css">
-<style> img{width:30%;text-align: center;display: block;}</style>
+    <title>Txqi blog</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        img {
+            width: 30%;
+            text-align: center;
+            display: block;
+        }
+    </style>
 </head>
+
 <body background: #f1f1f1>
-<br><br><br><br>
-<div >
-  <h2 style="text-align:center">Txqi's bulog</h2>
-</div>
-<br><br><br><br>
-
-<div class="row">
-  <div>
-    <div><h2>Bandit Wargame write up </h2>
+    <br><br><br><br>
+    <div>
+        <h2 style="text-align:center">Txqi's bulog</h2>
     </div>
-<br>
+    <br><br><br><br>
 
-    
-    <div class="card" style={widthratio:70%}>
-  <ul><li>Level 0</li></ul><p>The command used is rather simple:</p><p>ssh bandit0@bandit.labs.overthewire.org -p 2220</p><p><img align="middle"  src="1.png" /></p><p>Now we entered the machine, lets go level solve level 1.</p><ul><li>Level 1</li></ul><p>The clue given is there is readme file. So we can see it by using ‘’ls’’ command and read the readme</p><p><img src="2.png" /></p><p>Then we’ll get the password which is ‘’’ boJ9jbbUNNfktd78OOpsqOltutMc3MY1’’’</p><p>Now we continue to log on as bandit1 with given password using ssh</p><ul><li>Level 2</li></ul><p>Here we will stumble a file with name of ‘’–‘’. The  thing is we cannot directly read the file because if written is CLI, the dash usually holding up additional argument of the command. The only way is to write full path of the ‘’–‘’ file by writing the directory or just simply ‘’~/-‘’. The ‘’~’’ will determine the path of the -.</p><p><img src="3.png" /></p><p>After getting the password, we can proceed to next level</p><ul><li>Level 3</li></ul><p><img src="4.png" /></p><p>Here we can see that there is file name ‘’’spaces in this filename’’’. Once more CLI don’t really recognize/differentiate either a space between two so we must specifiy that the spaces is name of file not adding other command in the line. We can solve this by putting ‘ before and after the name of file.</p><ul><li>Level 4</li></ul><p><img src="5.png" /></p><p>Here we are dealing with hidden files in a directory. However, we can use vim in navigate and access the hidden file.</p><p><img src="6.png" /></p><ul><li>Level 5</li><li>Level 6</li><li>Level 7</li><li>Level 8</li><li>Level 9</li><li>Level 10</li></ul>
-    </div>
+    <div class="row">
+        <div>
+            <div>
+                <h2>Bandit Wargame write up </h2>
+            </div>
+            <br>
+
+
+            <div class="card" style="width:70%">
+                <ul>
+                    <li>Level 0</li>
+                </ul>
+                <p>The command used is rather simple:</p>
+                <p>ssh bandit0@bandit.labs.overthewire.org -p 2220</p>
+                <p><img src="1.png" /></p>
+                <p>Now we entered the machine, lets go level solve level 1.</p>
+                <ul>
+                    <li>Level 1</li>
+                </ul>
+                <p>The clue given is there is readme file. So we can see it by using ‘’ls’’ command and read the readme</p>
+                <p><img src="2.png" /></p>
+                <p>Then we’ll get the password which is ‘’’ boJ9jbbUNNfktd78OOpsqOltutMc3MY1’’’</p>
+                <p>Now we continue to log on as bandit1 with given password using ssh</p>
+                <ul>
+                    <li>Level 2</li>
+                </ul>
+                <p>Here we will stumble a file with name of ‘’–‘’. The funny thing is we cannot directly read the file because if written is CLI, the dash usually holding up additional argument of the command. One of the way is to write full path of the
+                    ‘’–‘’ file by writing the directory or just simply ‘’~/-‘’. The ‘’~’’ will determine the path of the -.</p>
+                <p><img src="3.png" /></p>
+                <p>After getting the password, we can proceed to next level</p>
+                <ul>
+                    <li>Level 3</li>
+                </ul>
+                <p><img src="4.png" /></p>
+                <p>Here we can see that there is file name ‘’’spaces in this filename’’’. Once more CLI don’t really recognize/differentiate either a space between two so we must specifiy that the spaces is name of file not adding other command in the line.
+                    We can solve this by putting ‘ before and after the name of file.</p>
+                <ul>
+                    <li>Level 4</li>
+                </ul>
+                <p><img src="5.png" /></p>
+                <p>Here we are dealing with hidden files in a directory. However, we can use vim in navigate and access the hidden file.</p>
+                <p><img src="6.png" /></p>
+                <ul>
+                    <li>Level 5</li>
+                </ul>
+                <p><img src="7.png" /></p>
+                <p>Here at the first command, cat , we can see that most of the file is gibberish but there are some line that is readable by human. With this we can determine that one of the file is readable. We can know by the checking datatype of the
+                    file. Then vim the file.
+                </p>
+                <p><img src="8.png" /></p>
+                <ul>
+                    <li>Level 6</li>
+                </ul>
+                <p><img src="9.png" /></p>
+                <p>Here we can see that there are multiple directories inside inhere. So we have to use command that will find file that is human-readable, 1033 bytes in size, not executable.</p>
+                <p><img src="10.png" /></p>
+                <p>The command made is incomplete because we still didn’t consider the characteristic of human readable. But still, the password is gained</p>
+                <ul>
+                    <li>Level 7</li>
+                </ul>
+                <p><img src="11.png" /></p>
+                <p>Here we can see that there is multiple file with user bandit7,owned by group bandit6 and 33 bytes in size. However upon checking it, most of the file we cannot accessed it. Therefore we put 2&gt;/dev/null at the end of the command . Stdin
+                    is 0, Stdout is 1 ,and Stderr is 2. This command said that we put the error to null, thus only show the permissible file.</p>
+                <ul>
+                    <li>Level 8</li>
+                </ul>
+                <p><img src="12.png" /></p>
+                <p>Here we can see that the line of the file is near to 10k. it is a hassle to read. It is said the password is beside the word millionth</p>
+                <p><img src="13.png" /></p>
+                <ul>
+                    <li>Level 9</li>
+                </ul>
+                <p><img src="14.png" /></p>
+                <p>Again with the problem, it is 1000 line files. The clues is it is only repeated once</p>
+                <p>After command sort and count, we can see that there is single line that repeated once. And that is the password</p>
+                <p><img src="15.png" /></p>
+                <ul>
+                    <li>Level 10</li>
+                </ul>
+                <p>Upon opening , the data is gibberish </p>
+                <p><img src="16.png" /></p>
+                <p><img src="17.png" /></p>
+                <p>With this command, we can find the password which are truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk. </p>
+                <ul>
+                    <li>Level 11</li>
+                </ul>
+                <p>It is stated that the data is encoded with base64. We just decode it back.</p>
+                <p><img src="18.png" /></p>
+                <ul>
+                    <li>Level 12</li>
+                </ul>
+                <p>It is stated that the data is encode using ROT13</p>
+                <p><img src="19.png" /></p>
+                <ul>
+                    <li>Level 13</li>
+                </ul>
+                <p><img src="20.png" /></p>
+            </div>
 
 </body>
